@@ -8,55 +8,51 @@ import android.view.ViewGroup
 import butterknife.BindView
 
 import com.zanderhamster.musichelper.BaseController
-import com.zanderhamster.musichelper.MyApplication
+import com.zanderhamster.musichelper.MHApplication
 import com.zanderhamster.musichelper.R
-import com.zanderhamster.musichelper.db.Song
-import io.reactivex.Scheduler
-import io.reactivex.Single
-import io.reactivex.SingleObserver
+import com.zanderhamster.musichelper.db.SongEntity
+import com.zanderhamster.musichelper.db.SongModel
+import com.zanderhamster.musichelper.db.SongsRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-
-import java.util.ArrayList
+import java.util.*
+import javax.inject.Inject
 
 class MainController : BaseController() {
 
-    @BindView(R.id.recycler) lateinit var recycler: RecyclerView
+    @BindView(R.id.recyclerMain) lateinit var recycler: RecyclerView
+
+    @Inject lateinit var songsRepository: SongsRepository
+
     private val adapter = MainAdapter()
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
+
+        controllerComponent.inject(this)
         configureRecycler()
-        addSong("Солнышко в руках", "Демо")
+//        addSong("Солнышко в руках", "Демо")
+//        addSong("Попрошу тебя", "Вирус")
 
-        MyApplication.database?.songDao()?.getAllSongs()
-                ?.subscribeOn(Schedulers.io())
-                ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe(object : SingleObserver<List<Song>> {
-                    override fun onSuccess(t: List<Song>) {
-                        adapter.setItems(t)
-                    }
+        val disposable = songsRepository
+                .getSongsObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    adapter.setItems(it)
+                }
+        disposables.add(disposable)
 
-                    override fun onSubscribe(d: Disposable) {
-                    }
-
-                    override fun onError(e: Throwable) {
-                    }
-
-                })
     }
 
     private fun configureRecycler() {
-        recycler.layoutManager = LinearLayoutManager(recycler.context)
+        recycler.layoutManager = LinearLayoutManager(activity)
         recycler.adapter = adapter
     }
 
     private fun addSong(name: String, artist: String) {
-        val song = Song(0, name, artist)
-        Single.fromCallable {
-            MyApplication.database?.songDao()?.insert(song)
-        }
+        val song = SongModel(UUID.randomUUID().toString(), name, artist)
+        songsRepository.addSong(song)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()

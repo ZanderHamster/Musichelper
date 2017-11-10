@@ -1,7 +1,6 @@
 package com.zanderhamster.musichelper
 
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,13 +17,9 @@ import butterknife.Unbinder
  *
  * При закрытии контроллера ([.onDestroyView]) ссылки на view зануляются.
  */
-abstract class ButterKnifeController : Controller {
+abstract class ButterKnifeController : Controller() {
 
     private var unbinder: Unbinder? = null
-
-    constructor() {}
-
-    constructor(args: Bundle) : super(args) {}
 
     protected abstract fun inflateView(inflater: LayoutInflater, container: ViewGroup): View
 

@@ -1,15 +1,18 @@
 package com.zanderhamster.musichelper.db
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
-import io.reactivex.Single
+import android.arch.persistence.room.*
 
 @Dao
-interface SongDao {
-    @Query("SELECT * FROM song")
-    fun getAllSongs(): Single<List<Song>>
+abstract class SongDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract fun insert(song: SongEntity)
 
-    @Insert
-    fun insert(song: Song)
+    @Query("select * from song")
+    abstract fun getAllSongs(): List<SongEntity>
+
+//    @Query("SELECT DISTINCT  * FROM song WHERE name LIKE :arg0 OR artist LIKE :arg0")
+//    abstract fun getSong(search: String): SongEntity
+
+    @Query("delete from song")
+    abstract fun deleteAllSongs()
 }
