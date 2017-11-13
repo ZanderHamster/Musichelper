@@ -1,5 +1,6 @@
 package com.zanderhamster.musichelper.di
 
+import com.zanderhamster.musichelper.addSong.AddSongController
 import com.zanderhamster.musichelper.main.MainController
 import dagger.Module
 import dagger.Subcomponent
@@ -12,4 +13,5 @@ interface ControllerComponent {
     class ControllerModule
 
     fun inject(controller: MainController)
+    fun inject(controller: AddSongController)
 }

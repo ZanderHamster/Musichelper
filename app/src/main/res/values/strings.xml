@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Music helper</string>
+    <string name="song_name_placeholder">%1$s - %2$s</string>
+    <string name="add">Добавить</string>
+    <string name="remove_all_songs">Удалить все записи</string>
+    <string name="name">Название</string>
+    <string name="number">Номер</string>
+    <string name="artist">Исполнитель</string>
+    <string name="add_song">Добавить песню</string>
 </resources>

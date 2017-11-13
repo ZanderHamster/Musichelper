@@ -31,6 +31,17 @@ class SongsRepository @Inject constructor(appDatabase: AppDatabase) {
 
     }
 
+    fun addSongs(items: List<SongModel>): Completable {
+        if (items.isEmpty()) return Completable.complete()
+
+        return Completable
+                .fromAction({ songDao.insert(model.transform()) })
+                .doOnSubscribe { Timber.e("Start adding song to DB") }
+                .doOnComplete(this::updateSongsSubject)
+                .doOnError { err -> Timber.e(err) }
+
+    }
+
     fun deleteAllSongs(): Completable {
         return Completable
                 .fromAction({ songDao.deleteAllSongs() })
@@ -57,6 +68,7 @@ private fun SongModel.transform(): SongEntity {
     return SongEntity(
             id = songId,
             name = name,
+            number = number,
             artist = artist
     )
 }
@@ -65,6 +77,7 @@ private fun SongEntity.transform(): SongModel {
     return SongModel(
             songId = id,
             name = name,
+            number = number,
             artist = artist
     )
 }

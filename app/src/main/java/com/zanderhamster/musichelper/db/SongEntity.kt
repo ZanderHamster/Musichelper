@@ -7,5 +7,6 @@ import android.arch.persistence.room.PrimaryKey
 data class SongEntity(
         @PrimaryKey
         val id: String,
+        val number: Int,
         val name: String,
         val artist: String)

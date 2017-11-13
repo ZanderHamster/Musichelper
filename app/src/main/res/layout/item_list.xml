@@ -3,39 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:layout_marginTop="8dp"
-    android:background="#ffffff">
+    android:layout_marginTop="8dp">
 
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        tools:ignore="UselessParent">
+        android:foreground="?attr/selectableItemBackground">
 
-        <View
-            android:id="@+id/item_list_handle"
-            android:layout_width="32dp"
+        <TextView
+            android:id="@+id/item_list_number"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_gravity="top|left"
-            android:background="#20000000"
-            android:clickable="true"
-            android:focusable="true"
-            tools:ignore="RtlHardcoded" />
+            android:background="@color/background_number"
+            android:gravity="center"
+            android:paddingEnd="8dp"
+            android:paddingStart="14dp"
+            android:textSize="20sp"
+            tools:text="16" />
 
         <TextView
             android:id="@+id/item_list_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top|start"
-            android:layout_marginStart="32dp"
+            android:layout_toEndOf="@+id/item_list_number"
             android:gravity="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:text="Солнышков руках - Демо" />
 
-    </FrameLayout>
+    </RelativeLayout>
 
 </FrameLayout>

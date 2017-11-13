@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/main_menu_remove_all"
+        android:icon="@drawable/ic_remove_circle_outline_black_24dp"
+        android:title="@string/remove_all_songs"
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/main_menu_add"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="@string/add"
+        app:showAsAction="always" />
+</menu>
