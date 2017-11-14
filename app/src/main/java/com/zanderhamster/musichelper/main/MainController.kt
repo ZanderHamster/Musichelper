@@ -34,9 +34,6 @@ class MainController : BaseController() {
         controllerComponent.inject(this)
         configureToolbar()
         configureRecycler()
-//        addSong(17, "Солнышко в руках", "Демо")
-//        addSong(16, "Попрошу тебя", "Вирус")
-//        addSong(21, "А может к черту любовь", "Лобода")
 
         val disposable = songsRepository
                 .getSongsObservable()
@@ -52,7 +49,6 @@ class MainController : BaseController() {
     private fun setCurrentDemoList(): List<SongModel> {
         val items = mutableListOf<SongModel>()
         items.add(SongModel(UUID.randomUUID().toString(), 14, "Highway to hell", "AC/DC"))
-
         items.add(SongModel(UUID.randomUUID().toString(), 6, "Твои глаза", "Лобода"))
         items.add(SongModel(UUID.randomUUID().toString(), 18, "Sweet dreams", "Eurythmics"))
         items.add(SongModel(UUID.randomUUID().toString(), 8, "Песня 404", "Время и Стекло"))
@@ -126,7 +122,6 @@ class MainController : BaseController() {
                 .subscribe()
     }
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.controller_main, container, false)
-    }
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View =
+            inflater.inflate(R.layout.controller_main, container, false)
 }

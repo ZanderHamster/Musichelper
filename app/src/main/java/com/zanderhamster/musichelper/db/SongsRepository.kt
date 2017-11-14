@@ -34,9 +34,11 @@ class SongsRepository @Inject constructor(appDatabase: AppDatabase) {
     fun addSongs(items: List<SongModel>): Completable {
         if (items.isEmpty()) return Completable.complete()
 
+        val list = items.map { it.transform() }
+
         return Completable
-                .fromAction({ songDao.insert(model.transform()) })
-                .doOnSubscribe { Timber.e("Start adding song to DB") }
+                .fromAction({ songDao.insert(list) })
+                .doOnSubscribe { Timber.e("Start adding songs to DB") }
                 .doOnComplete(this::updateSongsSubject)
                 .doOnError { err -> Timber.e(err) }
 

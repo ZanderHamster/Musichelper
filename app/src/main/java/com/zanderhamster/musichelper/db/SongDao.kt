@@ -7,6 +7,9 @@ abstract class SongDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(song: SongEntity)
 
+    @Insert()
+    abstract fun insert(songs: List<SongEntity>)
+
     @Query("select * from song")
     abstract fun getAllSongs(): List<SongEntity>
 

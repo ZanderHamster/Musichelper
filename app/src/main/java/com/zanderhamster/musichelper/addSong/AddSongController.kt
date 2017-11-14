@@ -1,5 +1,6 @@
 package com.zanderhamster.musichelper.addSong
 
+import android.support.design.widget.Snackbar
 import android.support.design.widget.TextInputEditText
 import android.support.design.widget.TextInputLayout
 import android.support.v7.widget.Toolbar
@@ -41,11 +42,31 @@ class AddSongController : BaseController() {
         controllerComponent.inject(this)
         configureToolbar()
         btnAdd.setOnClickListener {
+            if (!checkFields()) return@setOnClickListener
             addSong(addSongNumber.text.toString().toInt(),
                     addSongName.text.toString(),
                     addSongArtist.text.toString())
         }
     }
+
+    private fun checkFields(): Boolean {
+        var allRight = true
+        if (!isNotBlank(tilAddSongNumber, addSongNumber)) allRight = false
+        if (!isNotBlank(tilAddSongName, addSongName)) allRight = false
+        if (!isNotBlank(tilAddSongArtist, addSongArtist)) allRight = false
+        return allRight
+    }
+
+    private fun isNotBlank(til: TextInputLayout, edit: TextInputEditText): Boolean {
+        return if (edit.text.isBlank()) {
+            til.error = "Поле должно быть заполнено"
+            false
+        } else {
+            til.error = ""
+            true
+        }
+    }
+
 
     private fun addSong(number: Int, name: String, artist: String) {
         val song = SongModel(UUID.randomUUID().toString(), number, name, artist)
@@ -58,20 +79,19 @@ class AddSongController : BaseController() {
                     }
 
                     override fun onSubscribe(d: Disposable) {
-
+                        hideKeyboard()
                     }
 
                     override fun onError(e: Throwable) {
-
+                        Snackbar.make(toolbar, e.message.toString(), Snackbar.LENGTH_SHORT).show()
                     }
 
                 })
     }
 
     private fun configureToolbar() {
-        toolbar.setOnMenuItemClickListener {
+        toolbar.setNavigationOnClickListener {
             router.handleBack()
-            true
         }
     }
 }
