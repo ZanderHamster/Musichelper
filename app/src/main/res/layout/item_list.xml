@@ -19,10 +19,11 @@
             android:id="@+id/item_list_number"
             android:layout_width="50dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="6dp"
             android:background="@color/background_number"
             android:gravity="center"
             android:paddingEnd="8dp"
-            android:paddingStart="14dp"
+            android:paddingStart="8dp"
             android:textSize="20sp"
             tools:text="16" />
 
@@ -32,9 +33,28 @@
             android:layout_height="match_parent"
             android:layout_gravity="top|start"
             android:layout_toEndOf="@+id/item_list_number"
+            android:layout_toStartOf="@+id/item_list_tone"
+            android:ellipsize="end"
             android:gravity="center"
+            android:maxLines="1"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
             android:textSize="20sp"
             tools:text="Солнышков руках - Демо" />
+
+        <TextView
+            android:id="@+id/item_list_tone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@color/background_tone"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:visibility="gone"
+            tools:text="A038 SW1"
+            tools:visibility="visible" />
 
     </RelativeLayout>
 

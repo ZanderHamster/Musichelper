@@ -9,4 +9,5 @@ data class SongEntity(
         val id: String,
         val number: Int,
         val name: String,
-        val artist: String)
+        val artist: String,
+        val tone: String)

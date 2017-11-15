@@ -38,20 +38,23 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
             holder.tvName.setBackgroundColor(ContextCompat.getColor(holder.tvName.context, R.color.colorAccent))
         }
         holder.tvNumber.text = song.number.toString()
+        if (song.tone.isNotBlank()) {
+            holder.tvTone.visibility = View.VISIBLE
+            holder.tvTone.text = song.tone
+        } else {
+            holder.tvTone.visibility = View.GONE
+        }
         holder.tvName.text = holder.tvName.resources.getString(
                 R.string.song_name_placeholder,
                 song.name, song.artist)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 
     class MainViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        @BindView(R.id.item_list_name)
-        lateinit var tvName: TextView
-        @BindView(R.id.item_list_number)
-        lateinit var tvNumber: TextView
+        @BindView(R.id.item_list_name) lateinit var tvName: TextView
+        @BindView(R.id.item_list_number) lateinit var tvNumber: TextView
+        @BindView(R.id.item_list_tone) lateinit var tvTone: TextView
 
         init {
             ButterKnife.bind(this, v)

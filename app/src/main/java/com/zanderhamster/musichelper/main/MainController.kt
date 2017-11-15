@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import butterknife.BindView
 import com.bluelinelabs.conductor.RouterTransaction
 
@@ -44,36 +45,37 @@ class MainController : BaseController() {
                 }
         disposables.add(disposable)
 
+//        webView.loadUrl("file:///android_asset/Power band.htm")
     }
 
     private fun setCurrentDemoList(): List<SongModel> {
         val items = mutableListOf<SongModel>()
-        items.add(SongModel(UUID.randomUUID().toString(), 14, "Highway to hell", "AC/DC"))
-        items.add(SongModel(UUID.randomUUID().toString(), 6, "Твои глаза", "Лобода"))
-        items.add(SongModel(UUID.randomUUID().toString(), 18, "Sweet dreams", "Eurythmics"))
-        items.add(SongModel(UUID.randomUUID().toString(), 8, "Песня 404", "Время и Стекло"))
-        items.add(SongModel(UUID.randomUUID().toString(), 5, "Туманы", "Макс Барских"))
-        items.add(SongModel(UUID.randomUUID().toString(), 20, "Бьет бит", "IOWA"))
-        items.add(SongModel(UUID.randomUUID().toString(), 13, "I kissed a girl", "Katy Parry"))
-        items.add(SongModel(UUID.randomUUID().toString(), 23, "Экспонат", "Ленинград"))
-        items.add(SongModel(UUID.randomUUID().toString(), 24, "Venus", "Shoking Blue"))
-        items.add(SongModel(UUID.randomUUID().toString(), 11, "Он тебя целует", "Руки вверх"))
-        items.add(SongModel(UUID.randomUUID().toString(), 10, "Лейла", "Jah Khalib"))
+        items.add(SongModel(UUID.randomUUID().toString(), 14, "Highway to hell", "AC/DC", "C038"))
+        items.add(SongModel(UUID.randomUUID().toString(), 6, "Твои глаза", "Лобода", "A055"))
+        items.add(SongModel(UUID.randomUUID().toString(), 18, "Sweet dreams", "Eurythmics", "B102 +02"))
+        items.add(SongModel(UUID.randomUUID().toString(), 8, "Песня 404", "Время и Стекло", "D032 t125"))
+        items.add(SongModel(UUID.randomUUID().toString(), 5, "Туманы", "Макс Барских", "A038 SW1 A1-7"))
+        items.add(SongModel(UUID.randomUUID().toString(), 20, "Бьет бит", "IOWA", "A034 SW1 A1-4"))
+        items.add(SongModel(UUID.randomUUID().toString(), 13, "I kissed a girl", "Katy Parry", "A101"))
+        items.add(SongModel(UUID.randomUUID().toString(), 23, "Экспонат", "Ленинград", "A038 SW1 A1-6"))
+        items.add(SongModel(UUID.randomUUID().toString(), 24, "Venus", "Shoking Blue", "A038 SW1 A1-6"))
+        items.add(SongModel(UUID.randomUUID().toString(), 11, "Он тебя целует", "Руки вверх", "C038 -02"))
+        items.add(SongModel(UUID.randomUUID().toString(), 10, "Лейла", "Jah Khalib", "COMBI A000"))
 
         items.add(SongModel(UUID.randomUUID().toString(), -1, "Блок", "2"))
 
-        items.add(SongModel(UUID.randomUUID().toString(), 4, "Импульсы", "Темникова"))
-        items.add(SongModel(UUID.randomUUID().toString(), 1, "Мало тебя", "Серебро"))
-        items.add(SongModel(UUID.randomUUID().toString(), 25, "Attention", "C.Puth"))
-        items.add(SongModel(UUID.randomUUID().toString(), 2, "Между нами любовь", "Серебро"))
-        items.add(SongModel(UUID.randomUUID().toString(), 21, "К черту любовь", "Лобода"))
-        items.add(SongModel(UUID.randomUUID().toString(), 9, "Мало половин", "Бузова"))
-        items.add(SongModel(UUID.randomUUID().toString(), 16, "Попрошу тебя", "Вирус"))
-        items.add(SongModel(UUID.randomUUID().toString(), 17, "Солнышко в руках", "Дема"))
-        items.add(SongModel(UUID.randomUUID().toString(), 19, "Районы", "Звери"))
-        items.add(SongModel(UUID.randomUUID().toString(), 3, "Кружит", "Монатик"))
-        items.add(SongModel(UUID.randomUUID().toString(), 7, "Хали Гали", "Леприконсы"))
-        items.add(SongModel(UUID.randomUUID().toString(), 0, "Улети", "T-Fest"))
+        items.add(SongModel(UUID.randomUUID().toString(), 4, "Импульсы", "Темникова", "A038 SW1 A1-6"))
+        items.add(SongModel(UUID.randomUUID().toString(), 1, "Мало тебя", "Серебро", "A038 B4-2 vol-"))
+        items.add(SongModel(UUID.randomUUID().toString(), 25, "Attention", "C.Puth", "B113 +03"))
+        items.add(SongModel(UUID.randomUUID().toString(), 2, "Между нами любовь", "Серебро", "C032 SW1 SW2"))
+        items.add(SongModel(UUID.randomUUID().toString(), 21, "К черту любовь", "Лобода", "B032 A1-6 +04"))
+        items.add(SongModel(UUID.randomUUID().toString(), 9, "Мало половин", "Бузова", "A038 SW1 A1-5 +04"))
+        items.add(SongModel(UUID.randomUUID().toString(), 16, "Попрошу тебя", "Вирус", "A038 SW1"))
+        items.add(SongModel(UUID.randomUUID().toString(), 17, "Солнышко в руках", "Демo", "A038 SW1"))
+        items.add(SongModel(UUID.randomUUID().toString(), 19, "Районы", "Звери", "D000 SW1 SW2 +06"))
+        items.add(SongModel(UUID.randomUUID().toString(), 3, "Кружит", "Монатик", "A038 SW1 A1-7"))
+        items.add(SongModel(UUID.randomUUID().toString(), 7, "Хали Гали", "Леприконсы", "C032 SW1 SW2 A1-7"))
+        items.add(SongModel(UUID.randomUUID().toString(), 0, "Улети", "T-Fest", "COMBI A000"))
         return items
     }
 

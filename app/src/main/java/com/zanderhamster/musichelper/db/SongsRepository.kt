@@ -71,7 +71,8 @@ private fun SongModel.transform(): SongEntity {
             id = songId,
             name = name,
             number = number,
-            artist = artist
+            artist = artist,
+            tone = tone
     )
 }
 
@@ -80,6 +81,7 @@ private fun SongEntity.transform(): SongModel {
             songId = id,
             name = name,
             number = number,
-            artist = artist
+            artist = artist,
+            tone = tone
     )
 }
